@@ -1,0 +1,18 @@
+# -*- mode: yaml -*-
+
+CompileFlags:
+  CompilationDatabase: build/
+Diagnostics:
+  ClangTidy:
+    Add:
+      - bugprone-*
+      - cppcoreguidelines-*
+      - hicpp-*
+      - modernize-*
+      - readability-*
+    Remove:
+      - cppcoreguidelines-avoid-magic-numbers
+      - modernize-use-trailing-return-type
+      - readability-magic-numbers
+  MissingIncludes: Strict
+  UnusedIncludes: Strict
