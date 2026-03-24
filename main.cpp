@@ -3,11 +3,14 @@
 #include "cairomm/surface.h"
 #include "cairomm/exception.h"
 
+#include <cstddef>
 #include <iostream>
 #include <numbers>
+#include <span>
 
-int main()
+int main(int argc, char **argv)
 {
+  auto args = std::span(argv, size_t(argc));
   try {
     auto surface =
       Cairo::ImageSurface::create(Cairo::Surface::Format::ARGB32, 200, 200);
@@ -26,7 +29,7 @@ int main()
     context->set_source_rgba(0.3, 0.2, 0.5, .5);
     context->arc(100., 100., 100., 0., 2. * std::numbers::pi);
     context->fill();
-    surface->write_to_png("test.png");
+    surface->write_to_png(args[1]);
   } catch (Cairo::logic_error &e) {
     std::cerr << e.what() << '\n';
     return 1;
